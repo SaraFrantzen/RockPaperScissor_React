@@ -1,25 +1,16 @@
-export default class RockPaperScissors extends Component {
-    constructor(props) {
-      super(props)
-      this.state= 
-      {
-        user: null,
-        computer: ['rock', 'paper', 'scissors'],
-        computerPlay: null
-      }
-      this.handleClick = this.handleClick.bind(this)
-    }
-    handleClick = (e) =>
-    {
-      this.setState(
-        {
-          [e.target.name]: e.target.value,
-          computerPlay: this.state.computer[Math.floor(Math.random()*this.state.computer.length)]
-        })
-        return(this.state)
-    }
-  }
+import React, { Component } from 'react';
+
+ class RockPaperScissors extends Component {
+
+ }
+ 
   
+
+
+
+export default  RockPaperScissors;
+ 
+
   
   /* let rock = document.getElementById('rock')
   let paper = document.getElementById('paper')
