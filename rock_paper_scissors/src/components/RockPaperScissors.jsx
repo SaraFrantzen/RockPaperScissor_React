@@ -1,7 +1,15 @@
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
  class RockPaperScissors extends Component {
-
+  constructor(props){
+    this.state =
+    {
+      user: "",
+      computer: ['rock', 'paper', 'scissors'],
+      computerPlay: ""
+    }
+    this.handleClick = this.handleClick.bind(this)
+  }
  }
  
   
