@@ -11,9 +11,8 @@ class App extends Component {
     winner: "",
     userScore: 0,
     computerScore: 0,
+    ishidden: true,
   };
-
- 
 
   playGame = () => {
     this.setState({
@@ -31,15 +30,37 @@ class App extends Component {
       (user === "scissor" && computer === "paper") ||
       (user === "paper" && computer === "rock")
     ) {
-   /*    this.setState({ userScore: this.state.userScore + 1 }); */
+      /*    this.setState({ userScore: this.state.userScore + 1 }); */
       return "You win!";
     } else {
-/*       this.setState({ computerScore: this.state.computerScore + 1 }); */
+      /*       this.setState({ computerScore: this.state.computerScore + 1 }); */
       return "Computer wins, try again";
     }
   };
 
- 
+  toggleHidden() {
+    this.setState({
+      isHidden: !this.state.isHidden,
+    });
+  }
+  /*   this.toggleHidden.bind(this) */
+
+  userPlaysRock = () => {
+    this.setState({
+      user: "rock",
+    });
+  }
+
+  userPlaysPaper = () => {
+    this.setState({
+      user: "paper",
+    });
+  }
+  userPlaysScissors = () => {
+    this.setState({
+      user: "scissor",
+    });
+  }
 
   render() {
     const { user, computer, winner } = this.state;
@@ -48,46 +69,46 @@ class App extends Component {
         <h1>Rock Paper Scissors</h1>
         <div>
           <Images plays={user} />
-          <Images plays={computer} />
         </div>
-        
+
+        {/*           {() => this.setState({ user: "rock" })} */}
+
         <button
           className="playsButton"
           id="button-rock"
-          onClick={() => this.setState ({user: "rock"})}
+          onClick={this.userPlaysRock}
         >
           Rock
         </button>
-       
+
+        {!this.state.isHidden && <Images plays={computer} />}
+
         <button
           className="playsButton"
           id="button-paper"
-          onClick={() => this.setState ({user: "paper"}) }
+          onClick={this.userPlaysPaper}
         >
           Paper
-        </button>{" "}
-        
+        </button>
+
         <button
           className="playsButton"
           id="button-scissor"
-          onClick={() => this.setState ({user: "scissor"}) }
+          onClick={this.userPlaysScissors}
         >
           Scissor
         </button>
 
-        <button className="playGame" id="button-play" onClick={this.playGame}>
-          Play
-        </button>
+        <p>You'r Choice: {user}</p>
 
+        <button className="playGame" id="button-play" onClick={this.playGame}>
+          Start Game
+        </button>
 
         <div className="winner" id="winner">
           {winner ? this.determineWinner() : " "}
         </div>
-
-             
-      
-       {/*  <Score userScore={this.state.userScore} computerScore={this.state.computerScore} /> */}
-      
+        {/*   <Score userScore={this.state.userScore} computerScore={this.state.computerScore} />  */}
       </>
     );
   }
