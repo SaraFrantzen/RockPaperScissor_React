@@ -1,36 +1,79 @@
 import React, { Component } from "react";
-import Footer from "./Footer";
-import RockPaperScissors from "./components/RockPaperScissors";
+import Images from "./components/Images";
+/* import Footer from "./Footer"; */
+/* import RockPaperScissors from "./components/RockPaperScissors"; */
+/* import Message from "./components/Message"; */
+
+const plays = ["rock", "paper", "scissors"];
 
 class App extends Component {
+  state = {
+    user: plays[0],
+    computer: plays[0],
+    winner: "",
+  };
+
+  playGame = () => {
+    this.setState({
+      computer: plays[Math.floor(Math.random() * plays.length)],
+      winner: this.determineWinner(),
+    });
+  };
+
+  determineWinner = () => {
+    const { user, computer } = this.state;
+    if (user === computer) {
+      return "Tie";
+    } else if (
+      (user === "rock" && computer === "scissor") ||
+      (user === "scissor" && computer === "paper") ||
+      (user === "paper" && computer === "rock")
+    ) {
+      return "You win!";
+    } else {
+      return "Computer wins, try again";
+    }
+  };
+
+  selectPlays = (plays) => {
+    this.setState({
+      user: plays,
+      winner: "",
+    });
+  };
+
   render() {
+    const { user, computer, winner } = this.state;
     return (
-      <div>
-        <title>Rock Paper Scissor</title>
-        <link rel="icon" href="/favicon.ico" />
-
-        <main>
-          <h1 className="title">Lets play Rock Scissors Paper</h1>
-
-          <p className="description">description</p>
-          <p className="rules">
-            If you play rock, you will beat the computer chosen scissors -- rock
-            crushes scissors <br></br>
-            But you would lose if the computer plays paper -- paper covers rock
-            <br></br>A play of paper will lose to a play of scissors -- scissors
-            cuts paper
-          </p>
-          <RockPaperScissors />
-          <br></br>
-          <button id="rock">ROCK</button>
-          <br></br>
-          <button id="paper">PAPER</button>
-          <br></br>
-          <button id="scissors">SCISSORS</button>
-          <br></br>
-        </main>
-        <Footer />
-      </div>
+      <>
+        <h1>Rock Paper Scissors</h1>
+        <div>
+          <Images plays={user} />
+          <Images plays={computer} />
+        </div>
+        <button
+          className="playsButton"
+          onClick={() => this.selectPlays("rock")}
+        >
+          Rock
+        </button>
+        <button
+          className="playsButton"
+          onClick={() => this.selectPlays("paper")}
+        >
+          Paper
+        </button>{" "}
+        <button
+          className="playsButton"
+          onClick={() => this.selectPlays("scissor")}
+        >
+          Scissor
+        </button>
+        <div className="winner">{winner ? this.determineWinner() : " "}</div>
+        <button type="button" onClick={this.playGame}>
+          Play
+        </button>
+      </>
     );
   }
 }
