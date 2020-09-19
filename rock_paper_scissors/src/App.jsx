@@ -47,27 +47,30 @@ class App extends Component {
           <Images plays={computer} />
         </div>
         <button
-          className="playsButton"
+          className="playsButton" id="button-rock"
           onClick={() => this.selectPlays("rock")}
         >
           Rock
         </button>
         <button
-          className="playsButton"
+          className="playsButton" id="button-paper"
           onClick={() => this.selectPlays("paper")}
         >
           Paper
         </button>{" "}
         <button
-          className="playsButton"
+          className="playsButton" id="button-scissor"
           onClick={() => this.selectPlays("scissor")}
         >
           Scissor
         </button>
-        <div className="winner">{winner ? this.determineWinner() : " "}</div>
-        <button type="button" onClick={this.playGame}>
+
+        <button className="playGame" id="button-play" onClick={this.playGame}>
           Play
         </button>
+
+        <div className="winner" id="winner">{winner ? this.determineWinner() : " "}</div>
+       
       </>
     );
   }

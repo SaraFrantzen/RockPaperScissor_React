@@ -1,13 +1,15 @@
 import React from "react";
 import { shallow } from "enzyme";
-import RockPaperScissors from "../components/RockPaperScissors";
+import Images from "../components/Images";
 
-describe("RockPaperScissor", () => {
-  const handleClick = jest.fn();
-  const wrapper = shallow(<RockPaperScissors onClickHandler={handleClick} />);
+describe("Image for user play", () => {
+  beforeAll(() => {
+    let wrapper = shallow(<Images plays={} />);
+  })
+it('Shows image', () => {
+ expect(wrapper).find(".player-img").src().toEqual("rock")
+})
+  
 
-  it("on click the onClickHandler is being called", () => {
-    wrapper.find("button").simulate("click");
-    expect(handleClick).toHaveBeenCalled();
-  });
+
 });
