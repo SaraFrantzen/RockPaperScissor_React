@@ -9,7 +9,7 @@ const Images = ({plays}) => {
       <img className="player-img"  
       src={
           plays === "rock" ? rock : plays === "scissor" ? scissor : paper
-      } />
+      } alt="rock, paper, scissor"/>
     </div>
   );
 };

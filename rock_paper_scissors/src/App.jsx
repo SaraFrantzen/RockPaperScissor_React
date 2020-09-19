@@ -3,6 +3,7 @@ import Images from "./components/Images";
 /* import Footer from "./Footer"; */
 /* import RockPaperScissors from "./components/RockPaperScissors"; */
 /* import Message from "./components/Message"; */
+/* import { playGame, determineWinner, selectPlays } from "./helpers/rockPaperScissorHelper"; */
 
 const plays = ["rock", "paper", "scissors"];
 
@@ -13,34 +14,7 @@ class App extends Component {
     winner: "",
   };
 
-  playGame = () => {
-    this.setState({
-      computer: plays[Math.floor(Math.random() * plays.length)],
-      winner: this.determineWinner(),
-    });
-  };
 
-  determineWinner = () => {
-    const { user, computer } = this.state;
-    if (user === computer) {
-      return "Tie";
-    } else if (
-      (user === "rock" && computer === "scissor") ||
-      (user === "scissor" && computer === "paper") ||
-      (user === "paper" && computer === "rock")
-    ) {
-      return "You win!";
-    } else {
-      return "Computer wins, try again";
-    }
-  };
-
-  selectPlays = (plays) => {
-    this.setState({
-      user: plays,
-      winner: "",
-    });
-  };
 
   render() {
     const { user, computer, winner } = this.state;
