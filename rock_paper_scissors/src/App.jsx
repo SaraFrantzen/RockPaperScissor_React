@@ -16,20 +16,10 @@ class App extends Component {
   };
 
   playGame = () => {
-    let counter = 0;
-    let gameInterval = setInterval(() => {
-      counter++;
-
-      this.setState({
-        computer: plays[Math.floor(Math.random() * plays.length)],
-      });
-      if (counter > 5) {
-        clearInterval(gameInterval);
-        this.setState({
-          winner: this.determineWinner(),
-        });
-      }
-    }, 200);
+    this.setState({
+      computer: plays[Math.floor(Math.random() * plays.length)],
+      winner: this.determineWinner(),
+    });
     this.toggleHidden();
   };
 
@@ -42,11 +32,18 @@ class App extends Component {
       (user === "scissor" && computer === "paper") ||
       (user === "paper" && computer === "rock")
     ) {
-      this.setState({ userScore: this.state.userScore + 1 });
       return "You win!";
     } else {
-      this.setState({ computerScore: this.state.computerScore + 1 });
       return "Computer wins, try again";
+    }
+  };
+
+  setScore = () => {
+    const { winner } = this.state;
+    if (winner === "You win!") {
+      this.setState({ userScore: this.state.userScore + 1 });
+    } else if (winner === "Computer wins, try again") {
+      this.setState({ computerScore: this.statecomputerScore + 1 });
     }
   };
 
