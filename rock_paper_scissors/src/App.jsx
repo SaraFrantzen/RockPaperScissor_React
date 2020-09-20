@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Images from "./components/Images";
 /* import Score from "./components/Score"; */
+import {Grid} from 'semantic-ui-react';
 
 const plays = ["rock", "paper", "scissors"];
 
@@ -11,7 +12,7 @@ class App extends Component {
     winner: "",
     userScore: 0,
     computerScore: 0,
-    ishidden: false,
+    ishidden: true,
   };
 
   playGame = () => {
@@ -19,7 +20,7 @@ class App extends Component {
       computer: plays[Math.floor(Math.random() * plays.length)],
       winner: this.determineWinner(),
     });
-    this.toggleHidden()
+    this.toggleHidden();
   };
 
   determineWinner = () => {
@@ -45,9 +46,6 @@ class App extends Component {
     });
   }
 
- 
-
-
   userPlaysRock = () => {
     this.setState({
       user: "rock",
@@ -72,52 +70,62 @@ class App extends Component {
     const { user, computer, winner } = this.state;
     return (
       <>
-        <h1>Rock Paper Scissors</h1>
-        <div>
+       <h1>Rock Paper Scissors</h1>
+      <Grid divided='vertically'>
+        <Grid.Row columns={2}>
+          <Grid.Column>
           <Images plays={user} />
-        </div>
-
-        {!this.state.isHidden && <Images plays={computer} id="computerPlayImg"/>}
-
-        <button
+          </Grid.Column>
+          <Grid.Column>
+          {!this.state.isHidden && (
+          <Images plays={computer} id="computerPlayImg" />
+        )}
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row columns={3}>
+          <Grid.Column>
+          <button
           className="playsButton"
           id="button-rock"
           onClick={this.userPlaysRock}
         >
           Rock
         </button>
-
-        <button
+          </Grid.Column>
+          <Grid.Column>
+          <button
           className="playsButton"
           id="button-paper"
           onClick={this.userPlaysPaper}
         >
           Paper
         </button>
-
-        <button
+          </Grid.Column>
+          <Grid.Column>
+          <button
           className="playsButton"
           id="button-scissor"
           onClick={this.userPlaysScissors}
         >
           Scissor
         </button>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
+       
+      
 
         <p>You'r Choice: {user}</p>
-
-
 
         <button className="playGame" id="button-play" onClick={this.playGame}>
           Start Game
         </button>
 
-
-
-
-        <div className="winner" id="winner">
+        {!this.state.isHidden && ( <div className="winner" id="winner">
           {winner ? this.determineWinner() : " "}
-        </div>
-        {/*   <Score userScore={this.state.userScore} computerScore={this.state.computerScore} />  */}
+        </div>)
+
+      /*   {/*   <Score userScore={this.state.userScore} computerScore={this.state.computerScore} />  */} 
       </>
     );
   }
