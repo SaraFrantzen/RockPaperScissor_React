@@ -11,7 +11,7 @@ class App extends Component {
     winner: "",
     userScore: 0,
     computerScore: 0,
-    ishidden: true,
+    ishidden: false,
   };
 
   playGame = () => {
@@ -19,6 +19,7 @@ class App extends Component {
       computer: plays[Math.floor(Math.random() * plays.length)],
       winner: this.determineWinner(),
     });
+    this.toggleHidden()
   };
 
   determineWinner = () => {
@@ -43,24 +44,29 @@ class App extends Component {
       isHidden: !this.state.isHidden,
     });
   }
-  /*   this.toggleHidden.bind(this) */
+
+ 
+
 
   userPlaysRock = () => {
     this.setState({
       user: "rock",
     });
-  }
+    this.toggleHidden();
+  };
 
   userPlaysPaper = () => {
     this.setState({
       user: "paper",
     });
-  }
+    this.toggleHidden();
+  };
   userPlaysScissors = () => {
     this.setState({
       user: "scissor",
     });
-  }
+    this.toggleHidden();
+  };
 
   render() {
     const { user, computer, winner } = this.state;
@@ -71,7 +77,7 @@ class App extends Component {
           <Images plays={user} />
         </div>
 
-        {/*           {() => this.setState({ user: "rock" })} */}
+        {!this.state.isHidden && <Images plays={computer} id="computerPlayImg"/>}
 
         <button
           className="playsButton"
@@ -80,8 +86,6 @@ class App extends Component {
         >
           Rock
         </button>
-
-        {!this.state.isHidden && <Images plays={computer} />}
 
         <button
           className="playsButton"
@@ -101,9 +105,14 @@ class App extends Component {
 
         <p>You'r Choice: {user}</p>
 
+
+
         <button className="playGame" id="button-play" onClick={this.playGame}>
           Start Game
         </button>
+
+
+
 
         <div className="winner" id="winner">
           {winner ? this.determineWinner() : " "}

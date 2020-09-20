@@ -6,7 +6,7 @@ import rock from "../img/rock.jpg";
 const Images = ({plays}) => {
   return (
     <div className="player">
-      <img className="player-img"  
+      <img className="player-img" id="player-img" 
       src={
           plays === "rock" ? rock : plays === "scissor" ? scissor : paper
       } alt="rock, paper, scissor"/>
