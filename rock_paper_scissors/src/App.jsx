@@ -17,7 +17,8 @@ class App extends Component {
     ishidden: true,
   };
 
-  determineWinner = (user, computer) => {
+  determineWinner = () => {
+    const { user, computer } = this.state;
     if (user === computer) {
       return "Tie";
     } else if (
@@ -32,19 +33,12 @@ class App extends Component {
   };
 
   playGame = async () => {
-    let computerPlay = plays[Math.floor(Math.random() * plays.length)];
-    let userPlay = this.state.user;
-    let winner = await this.determineWinner(userPlay, computerPlay);
+    let computer = plays[Math.floor(Math.random() * plays.length)];
+    let user = this.state.user;
+    let winner = await this.determineWinner(user, computer);
     if (winner !== "Tie") {
       this.setScore(winner);
     }
-
-    /* this.setState({
-      computer: 
-      winner: this.determineWinner(),
-      // userScore: this.setScore(),
-      // computerScore: this.setScore(),
-    }); */
     this.toggleHidden();
   };
 
@@ -65,21 +59,9 @@ class App extends Component {
     });
   }
 
-  userPlaysRock = () => {
+  userPlays = (e) => {
     this.setState({
-      user: "rock",
-    });
-    this.toggleHidden();
-  };
-  userPlaysPaper = () => {
-    this.setState({
-      user: "paper",
-    });
-    this.toggleHidden();
-  };
-  userPlaysScissors = () => {
-    this.setState({
-      user: "scissor",
+      user: e.target.name,
     });
     this.toggleHidden();
   };
@@ -89,9 +71,7 @@ class App extends Component {
     return (
       <>
         <RpsHeader />
-
         <Instructions />
-
         <Container>
           <Grid divided="vertically">
             <Grid.Row columns={2}>
@@ -109,7 +89,8 @@ class App extends Component {
                 <button
                   className="playsButton"
                   id="button-rock"
-                  onClick={this.userPlaysRock}
+                  name="rock"
+                  onClick={this.userPlays}
                 >
                   Rock
                 </button>
@@ -118,7 +99,8 @@ class App extends Component {
                 <button
                   className="playsButton"
                   id="button-paper"
-                  onClick={this.userPlaysPaper}
+                  name="paper"
+                  onClick={this.userPlays}
                 >
                   Paper
                 </button>
@@ -127,7 +109,8 @@ class App extends Component {
                 <button
                   className="playsButton"
                   id="button-scissor"
-                  onClick={this.userPlaysScissors}
+                  name="scissor"
+                  onClick={this.userPlays}
                 >
                   Scissor
                 </button>

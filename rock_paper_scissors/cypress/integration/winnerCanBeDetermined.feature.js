@@ -7,7 +7,6 @@ describe('Computer plays rock', () => {
         }
       })
     })
-  
     it("user plays rock", () => {
       cy.get('button#button-rock').click()
       cy.get('button#button-play').click()
