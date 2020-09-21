@@ -1,15 +1,15 @@
 import React, { Component } from "react";
 import Images from "./components/Images";
 import Score from "./components/Score";
-import RpsHeader from "./components/RpsHeader"
+import RpsHeader from "./components/RpsHeader";
 import Instructions from "./components/Instructions";
 import { Grid, Container } from "semantic-ui-react";
 
-const plays = ["rock", "paper", "scissors"];
+const plays = ["rock", "paper", "scissor"];
 
 class App extends Component {
   state = {
-    user: plays[0],
+    user: "",
     computer: plays[0],
     winner: "",
     userScore: 0,
@@ -17,18 +17,7 @@ class App extends Component {
     ishidden: true,
   };
 
-  playGame = () => {
-    this.setState({
-      computer: plays[Math.floor(Math.random() * plays.length)],
-      winner: this.determineWinner(),
-      userScore: this.setScore(),
-      computerScore: this.setScore(),
-    });
-    this.toggleHidden();
-  };
-
-  determineWinner = () => {
-    const { user, computer } = this.state;
+  determineWinner = (user, computer) => {
     if (user === computer) {
       return "Tie";
     } else if (
@@ -42,12 +31,31 @@ class App extends Component {
     }
   };
 
-  setScore = () => {
-    const { winner } = this.state;
+  playGame = async () => {
+    let computerPlay = plays[Math.floor(Math.random() * plays.length)];
+    let userPlay = this.state.user;
+    let winner = await this.determineWinner(userPlay, computerPlay);
+    if (winner !== "Tie") {
+      this.setScore(winner);
+    }
+
+    /* this.setState({
+      computer: 
+      winner: this.determineWinner(),
+      // userScore: this.setScore(),
+      // computerScore: this.setScore(),
+    }); */
+    this.toggleHidden();
+  };
+
+  setScore = (winner) => {
     if (winner === "You win!") {
-      this.setState.userScore = +1;
+      this.setState({ userScore: this.state.userScore + 1, winner: winner });
     } else if (winner === "Computer wins, try again") {
-      this.setState({ computerScore: this.statecomputerScore + 1 });
+      this.setState({
+        computerScore: this.state.computerScore + 1,
+        winner: winner,
+      });
     }
   };
 
@@ -80,10 +88,10 @@ class App extends Component {
     const { user, computer, winner } = this.state;
     return (
       <>
-       <RpsHeader />
+        <RpsHeader />
 
-       <Instructions />
-       
+        <Instructions />
+
         <Container>
           <Grid divided="vertically">
             <Grid.Row columns={2}>
@@ -143,7 +151,8 @@ class App extends Component {
               <Grid.Column>
                 {!this.state.isHidden && (
                   <div className="winner" id="winner">
-                    {winner ? this.determineWinner() : " "}
+                    {winner}
+                    {/*    ? this.determineWinner() : " "  */}
                   </div>
                 )}
               </Grid.Column>
