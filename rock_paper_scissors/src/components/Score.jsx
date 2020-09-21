@@ -1,10 +1,10 @@
 import React from "react";
 
- const Score = ( props ) => {
+ const Score = ( {userScore, computerScore} ) => {
   return (
     <>
-      <div className="user">Your Score: {props.userScore}</div>
-      <div className="computer">Computer Score: {props.computerScore}</div>
+      <div className="user">Your Score: {userScore}</div>
+      <div className="computer">Computer Score: {computerScore}</div>
     </>
   );
 };
