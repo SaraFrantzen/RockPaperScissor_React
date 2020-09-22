@@ -3,6 +3,7 @@ import Images from "./components/Images";
 import Score from "./components/Score";
 import RpsHeader from "./components/RpsHeader";
 import Instructions from "./components/Instructions";
+import RpsFooter from "./components/RpsFooter";
 import { Grid, Container, Button } from "semantic-ui-react";
 
 const plays = ["rock", "paper", "scissor"];
@@ -119,11 +120,22 @@ class App extends Component {
               </Grid.Column>
             </Grid.Row>
 
-            <Grid.Row columns={1}>
+            <Grid.Row columns={2}>
               <Grid.Column>
                 <p id="your-choice">You'r Choice: {user}</p>
               </Grid.Column>
+             
+              <Grid.Column>
+                {!this.state.isHidden && (
+                  <div className="winner" id="winner">
+                    {winner}
+                  </div>
+                )}
+              </Grid.Column>
+         
+            
             </Grid.Row>
+
             <Grid.Row columns={2}>
               <Grid.Column>
                 <Button circular size="huge" color="black"
@@ -134,24 +146,19 @@ class App extends Component {
                   Start Game
                 </Button>
               </Grid.Column>
-              <Grid.Column>
-                {!this.state.isHidden && (
-                  <div className="winner" id="winner">
-                    {winner}
-                  </div>
-                )}
-              </Grid.Column>
+              
             </Grid.Row>
           </Grid>
-
           <Score 
             userScore={this.state.userScore}
             computerScore={this.state.computerScore}
           />
           <p id="score-board">.</p>
         </Container>
+        <RpsFooter />
       </>
     );
   }
 }
+
 export default App;

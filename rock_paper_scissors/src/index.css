@@ -33,10 +33,12 @@ code {
     font-family: 'Permanent Marker', cursive;
     margin-top: 2em;
     margin-bottom: 1em;
+    color: #660000;
   }
   #computerScore {
     font-size: 3em;
     font-family: 'Permanent Marker', cursive;
+    color: #660000;
   }
 #your-choice{
   font-size: 4em;
@@ -78,7 +80,8 @@ code {
 }
 
 #score-board {
-  margin-bottom: 30em;
+  margin-bottom: 10em;
+  
   
 }
 
