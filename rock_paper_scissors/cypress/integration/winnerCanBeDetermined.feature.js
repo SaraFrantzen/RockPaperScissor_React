@@ -25,6 +25,7 @@ describe('Computer plays rock', () => {
         cy.get('button#button-scissor').click()
         cy.get('button#button-play').click()
         cy.get('#winner').should('contain', "Computer wins, try again")
+        debugger;
         
       })
       

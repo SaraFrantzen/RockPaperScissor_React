@@ -3,24 +3,23 @@ import Images from "./components/Images";
 import Score from "./components/Score";
 import RpsHeader from "./components/RpsHeader";
 import Instructions from "./components/Instructions";
-import { Grid, Container } from "semantic-ui-react";
+import { Grid, Container, Button } from "semantic-ui-react";
 
 const plays = ["rock", "paper", "scissor"];
 
 class App extends Component {
   state = {
     user: "",
-    computer: plays[0],
+    computer: "",
     winner: "",
     userScore: 0,
     computerScore: 0,
     ishidden: true,
   };
 
-  determineWinner = () => {
-    const { user, computer } = this.state;
+  determineWinner = (user, computer) => {
     if (user === computer) {
-      return "Tie";
+     return "Tie" ;
     } else if (
       (user === "rock" && computer === "scissor") ||
       (user === "scissor" && computer === "paper") ||
@@ -32,13 +31,15 @@ class App extends Component {
     }
   };
 
-  playGame = async () => {
-    let computer = plays[Math.floor(Math.random() * plays.length)];
-    let user = this.state.user;
-    let winner = await this.determineWinner(user, computer);
+  playGame = /* async */ () => {
+    let computerPlay = plays[Math.floor(Math.random() * plays.length)];
+    this.setState({ computer: computerPlay });
+    let userPlay = this.state.user;
+    let winner = /* await */ this.determineWinner(userPlay, computerPlay);
     if (winner !== "Tie") {
       this.setScore(winner);
     }
+
     this.toggleHidden();
   };
 
@@ -73,7 +74,7 @@ class App extends Component {
         <RpsHeader />
         <Instructions />
         <Container>
-          <Grid divided="vertically">
+          <Grid className="playGrid">
             <Grid.Row columns={2}>
               <Grid.Column>
                 <Images plays={user} />
@@ -84,68 +85,70 @@ class App extends Component {
                 )}
               </Grid.Column>
             </Grid.Row>
-            <Grid.Row columns={3}>
+
+            <Grid.Row >
               <Grid.Column>
-                <button
+                <Button circular size="massive" color="black"
                   className="playsButton"
                   id="button-rock"
                   name="rock"
                   onClick={this.userPlays}
                 >
                   Rock
-                </button>
+                </Button>
               </Grid.Column>
               <Grid.Column>
-                <button
+                <Button circular size="massive" color="black"
                   className="playsButton"
                   id="button-paper"
                   name="paper"
                   onClick={this.userPlays}
                 >
                   Paper
-                </button>
+                </Button>
               </Grid.Column>
               <Grid.Column>
-                <button
+                <Button circular size="massive" color="black"
                   className="playsButton"
                   id="button-scissor"
                   name="scissor"
                   onClick={this.userPlays}
                 >
                   Scissor
-                </button>
+                </Button>
               </Grid.Column>
             </Grid.Row>
+
             <Grid.Row columns={1}>
               <Grid.Column>
-                <p>You'r Choice: {user}</p>
+                <p id="your-choice">You'r Choice: {user}</p>
               </Grid.Column>
             </Grid.Row>
             <Grid.Row columns={2}>
               <Grid.Column>
-                <button
+                <Button circular size="huge" color="black"
                   className="playGame"
                   id="button-play"
                   onClick={this.playGame}
                 >
                   Start Game
-                </button>
+                </Button>
               </Grid.Column>
               <Grid.Column>
                 {!this.state.isHidden && (
                   <div className="winner" id="winner">
                     {winner}
-                    {/*    ? this.determineWinner() : " "  */}
                   </div>
                 )}
               </Grid.Column>
             </Grid.Row>
           </Grid>
 
-          <Score
+          <Score 
             userScore={this.state.userScore}
             computerScore={this.state.computerScore}
           />
+          <p id="score-board">.</p>
         </Container>
       </>
     );

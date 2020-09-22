@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Permanent+Marker&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Shadows+Into+Light&display=swap');
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -13,6 +16,92 @@ code {
 }
 
 .player-img{
-  width: 20em;
-  height: 20em;
+  width: 30em;
+  height: 30em;
+  border-style: solid;
+  margin-bottom: 3em;
+  border-color: black;
+}
+
+.rules, #winner  {
+  font-size: 3em;
+  font-family: 'Permanent Marker', cursive;
+  }
+
+  #userScore{
+    font-size: 3em;
+    font-family: 'Permanent Marker', cursive;
+    margin-top: 2em;
+    margin-bottom: 1em;
+  }
+  #computerScore {
+    font-size: 3em;
+    font-family: 'Permanent Marker', cursive;
+  }
+#your-choice{
+  font-size: 4em;
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: bold;
+  margin-bottom: 1em;
+}
+#header{
+  padding-top: 2em;
+  padding-left: 3em;
+  height: 6em;
+  }
+  #header-txt{
+    font-size: 3em;
+    color: #b8b894;
+   
+  }
+#choose-weapon, 
+#simple-rules {
+  font-size: 4em;
+  font-family: 'Shadows Into Light', cursive;
+  font-weight: bold;
+}
+#simple-rules{
+  margin-left: 1em;
+}
+#choose-weapon{
+  margin-right: 1em;
+}
+
+#rulesGrid {
+  border-top: solid;
+  border-bottom: solid;
+  margin-top: 2em;
+  margin-bottom: 4em;
+  background-color:#e6b3cc;
+  padding-top: 2em;
+  padding-bottom: 2em;
+}
+
+#score-board {
+  margin-bottom: 30em;
+  
+}
+
+.index-img {
+  width: 40em;
+  margin-left: 10em;
+  margin-top: 6em;
+border-style: solid;
+  border-color: black;
+}
+
+#lets-play {
+  margin-right: 1em;
+  margin-top: 1em;
+  font-size: 6em;
+  font-family: 'Permanent Marker', cursive;
+}
+
+#button-paper{
+  margin-left: 3em;
+ 
+}
+
+#button-scissor{
+  margin-left: 6.5em;
 }
