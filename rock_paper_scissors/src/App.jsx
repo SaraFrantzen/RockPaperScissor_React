@@ -10,15 +10,16 @@ const plays = ["rock", "paper", "scissor"];
 
 class App extends Component {
   state = {
-    user: "",
-    computer: "",
+    user: [],
+    computer: [],
     winner: "",
     userScore: 0,
     computerScore: 0,
     ishidden: true,
   };
-
+  
   determineWinner = (user, computer) => {
+    debugger
     if (user === computer) {
      return "Tie" ;
     } else if (
@@ -38,7 +39,9 @@ class App extends Component {
     let userPlay = this.state.user;
     let winner = /* await */ this.determineWinner(userPlay, computerPlay);
     if (winner !== "Tie") {
-      this.setScore(winner);
+      this.setScore(winner) 
+    } else {
+      this.setState({winner: winner})
     }
 
     this.toggleHidden();
