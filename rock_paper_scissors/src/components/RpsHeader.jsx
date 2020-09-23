@@ -10,13 +10,13 @@ const RpsHeader = () => {
       <Segment inverted>
         <Header size="massive" id="header">
           <Grid>
-          <h2 id="header-txt"> Rock Paper Scissors</h2>
-          <Image.Group size="tiny">
-      
-            <Image bordered circular src={rock} />
-            <Image circular src={paper} />
-            <Image circular src={scissor} /> 
-          </Image.Group></Grid>
+            <h2 id="header-txt"> Rock Paper Scissors</h2>
+            <Image.Group size="tiny">
+              <Image bordered circular src={rock} />
+              <Image circular src={paper} />
+              <Image circular src={scissor} />
+            </Image.Group>
+          </Grid>
         </Header>
       </Segment>
     </>

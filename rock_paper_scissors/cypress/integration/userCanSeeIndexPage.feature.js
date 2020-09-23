@@ -1,5 +1,3 @@
-const { Item } = require("semantic-ui-react");
-
 describe("User can see the Index page", () => {
   beforeEach(() => {
     cy.visit("/");
@@ -22,4 +20,9 @@ describe("User can see the Index page", () => {
     cy.get("#userScore").contains("Your Score:");
     cy.get("#computerScore").contains("Computer Score:");
   });
+
+  it("by displaying footer", () => {
+    cy.get("#footer").contains("Made by Sara Lundkvist 2020");
+  });
+
 });

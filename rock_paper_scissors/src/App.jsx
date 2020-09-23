@@ -17,10 +17,10 @@ class App extends Component {
     computerScore: 0,
     ishidden: true,
   };
-  
+
   determineResult = (user, computer) => {
     if (user === computer) {
-     return "Tie" ;
+      return "Tie";
     } else if (
       (user === "rock" && computer === "scissor") ||
       (user === "scissor" && computer === "paper") ||
@@ -38,9 +38,9 @@ class App extends Component {
     let userPlay = this.state.user;
     let result = this.determineResult(userPlay, computerPlay);
     if (result !== "Tie") {
-      this.setScore(result) 
+      this.setScore(result);
     } else {
-      this.setState({result: result})
+      this.setState({ result: result });
     }
 
     this.toggleHidden();
@@ -89,9 +89,12 @@ class App extends Component {
               </Grid.Column>
             </Grid.Row>
 
-            <Grid.Row >
+            <Grid.Row>
               <Grid.Column>
-                <Button circular size="massive" color="black"
+                <Button
+                  circular
+                  size="massive"
+                  color="black"
                   className="playsButton"
                   id="button-rock"
                   name="rock"
@@ -101,7 +104,10 @@ class App extends Component {
                 </Button>
               </Grid.Column>
               <Grid.Column>
-                <Button circular size="massive" color="black"
+                <Button
+                  circular
+                  size="massive"
+                  color="black"
                   className="playsButton"
                   id="button-paper"
                   name="paper"
@@ -111,7 +117,10 @@ class App extends Component {
                 </Button>
               </Grid.Column>
               <Grid.Column>
-                <Button circular size="massive" color="black"
+                <Button
+                  circular
+                  size="massive"
+                  color="black"
                   className="playsButton"
                   id="button-scissor"
                   name="scissor"
@@ -126,7 +135,7 @@ class App extends Component {
               <Grid.Column>
                 <p id="your-choice">You'r Choice: {user}</p>
               </Grid.Column>
-             
+
               <Grid.Column>
                 {!this.state.isHidden && (
                   <div className="result" id="result">
@@ -134,13 +143,14 @@ class App extends Component {
                   </div>
                 )}
               </Grid.Column>
-         
-            
             </Grid.Row>
 
             <Grid.Row columns={2}>
               <Grid.Column>
-                <Button circular size="huge" color="black"
+                <Button
+                  circular
+                  size="huge"
+                  color="black"
                   className="playGame"
                   id="button-play"
                   onClick={this.playGame}
@@ -148,10 +158,9 @@ class App extends Component {
                   Start Game
                 </Button>
               </Grid.Column>
-              
             </Grid.Row>
           </Grid>
-          <Score 
+          <Score
             userScore={this.state.userScore}
             computerScore={this.state.computerScore}
           />
