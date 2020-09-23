@@ -12,14 +12,13 @@ class App extends Component {
   state = {
     user: [],
     computer: [],
-    winner: "",
+    result: "",
     userScore: 0,
     computerScore: 0,
     ishidden: true,
   };
   
-  determineWinner = (user, computer) => {
-    debugger
+  determineResult = (user, computer) => {
     if (user === computer) {
      return "Tie" ;
     } else if (
@@ -33,27 +32,27 @@ class App extends Component {
     }
   };
 
-  playGame = /* async */ () => {
+  playGame = () => {
     let computerPlay = plays[Math.floor(Math.random() * plays.length)];
     this.setState({ computer: computerPlay });
     let userPlay = this.state.user;
-    let winner = /* await */ this.determineWinner(userPlay, computerPlay);
-    if (winner !== "Tie") {
-      this.setScore(winner) 
+    let result = this.determineResult(userPlay, computerPlay);
+    if (result !== "Tie") {
+      this.setScore(result) 
     } else {
-      this.setState({winner: winner})
+      this.setState({result: result})
     }
 
     this.toggleHidden();
   };
 
-  setScore = (winner) => {
-    if (winner === "You win!") {
-      this.setState({ userScore: this.state.userScore + 1, winner: winner });
-    } else if (winner === "Computer wins, try again") {
+  setScore = (result) => {
+    if (result === "You win!") {
+      this.setState({ userScore: this.state.userScore + 1, result: result });
+    } else if (result === "Computer wins, try again") {
       this.setState({
         computerScore: this.state.computerScore + 1,
-        winner: winner,
+        result: result,
       });
     }
   };
@@ -72,7 +71,7 @@ class App extends Component {
   };
 
   render() {
-    const { user, computer, winner } = this.state;
+    const { user, computer, result } = this.state;
     return (
       <>
         <RpsHeader />
@@ -81,7 +80,7 @@ class App extends Component {
           <Grid className="playGrid">
             <Grid.Row columns={2}>
               <Grid.Column>
-                <Images plays={user} />
+                <Images id="userPlayImg" plays={user} />
               </Grid.Column>
               <Grid.Column>
                 {!this.state.isHidden && (
@@ -130,8 +129,8 @@ class App extends Component {
              
               <Grid.Column>
                 {!this.state.isHidden && (
-                  <div className="winner" id="winner">
-                    {winner}
+                  <div className="result" id="result">
+                    {result}
                   </div>
                 )}
               </Grid.Column>

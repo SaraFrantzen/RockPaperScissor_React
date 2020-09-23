@@ -10,21 +10,21 @@ describe('Computer plays rock', () => {
     it("user plays rock", () => {
       cy.get('#button-rock').click({force: true})
       cy.get('#button-play').click({force: true})
-      cy.get('#winner').should('contain', "Tie")
+      cy.get('#result').should('contain', "Tie")
       
     })
 
-    xit("user plays paper", () => {
+    it("user plays paper", () => {
         cy.get('#button-paper').click()
         cy.get('#button-play').click()
-        cy.get('#winner').should('contain', "You win!")
+        cy.get('#result').should('contain', "You win!")
         
       })
 
-      xit("user plays scissor", () => {
+      it("user plays scissor", () => {
         cy.get('#button-scissor').click()
         cy.get('#button-play').click()
-        cy.get('#winner').should('contain', "Computer wins, try again")
+        cy.get('#result').should('contain', "Computer wins, try again")
         
         
       })

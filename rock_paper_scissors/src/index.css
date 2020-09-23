@@ -23,7 +23,7 @@ code {
   border-color: black;
 }
 
-.rules, #winner  {
+.rules, #result  {
   font-size: 3em;
   font-family: 'Permanent Marker', cursive;
   }

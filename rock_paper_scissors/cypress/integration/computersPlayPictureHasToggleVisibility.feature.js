@@ -4,7 +4,7 @@ describe('visibility of computers play pictute is toggled', () => {
  })
 
  it ('by user playing rock', () => {
-     cy.get('button#button-rock').click()
+     cy.get('button#button-rock').click({force: true})
      cy.get('#computerPlayImg').should('not.be.visible')
      cy.get('button#button-play').click()
      cy.get('img#player-img').should('be.visible')
