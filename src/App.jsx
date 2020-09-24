@@ -2,11 +2,11 @@ import React, { Component } from "react";
 import Images from "./components/Images";
 import Score from "./components/Score";
 import RpsHeader from "./components/RpsHeader";
+import { authenticate } from "./modules/authenticate";
 import Instructions from "./components/Instructions";
 import RpsFooter from "./components/RpsFooter";
 import { Grid, Container, Button } from "semantic-ui-react";
 import LoginForm from "./components/LoginForm";
-import { authenticate } from './Modules/auth';
 
 const plays = ["rock", "paper", "scissor"];
 
@@ -37,7 +37,6 @@ class App extends Component {
       this.setState({ message: response.message, renderLoginForm: false });
     }
   };
-
 
   onChangeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value, entrySaved: false });
@@ -97,8 +96,7 @@ class App extends Component {
 
   render() {
     const { user, computer, result } = this.state;
-    
-    
+
     const { renderLoginForm, authenticated, message } = this.state;
     let renderLogin;
     switch (true) {
@@ -119,16 +117,17 @@ class App extends Component {
           </>
         );
         break;
-        case authenticated:
-          renderLogin = (
-            <p id="message">
-              You're logged in as: {JSON.parse(sessionStorage.getItem("credentials")).uid}
-            </p>
-          );
-          break;
-          default:
-            break;
-        }
+      case authenticated:
+        renderLogin = (
+          <p id="message">
+            You're logged in as:{" "}
+            {JSON.parse(sessionStorage.getItem("credentials")).uid}
+          </p>
+        );
+        break;
+      default:
+        break;
+    }
 
     return (
       <>
@@ -221,7 +220,10 @@ class App extends Component {
           <Score
             userScore={this.state.userScore}
             computerScore={this.state.computerScore}
-            onChangeHandler={this.onChangeHandler}
+            /*  onChangeHandler={this.onChangeHandler} */
+            authenticated={this.state.authenticated}
+            entrySaved={this.state.entrySaved}
+            entryHandler={() => this.setState({ entrySaved: true })}
           />
           {renderLogin}
 
