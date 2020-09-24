@@ -5,7 +5,7 @@ const RpsFooter = () => {
   return (
     <>
       <Segment inverted>
-        <Header size="massive" id="footer">
+        <Header size="huge" id="footer">
           <p id="made-by">Made by Sara Lundkvist 2020 </p> #CraftAcademy
         </Header>
       </Segment>
@@ -13,3 +13,5 @@ const RpsFooter = () => {
   );
 };
 export default RpsFooter;
+
+

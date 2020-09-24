@@ -8,7 +8,7 @@ const RpsHeader = () => {
   return (
     <>
       <Segment inverted>
-        <Header size="massive" id="header">
+        <Header size="huge" id="header">
           <Grid>
             <h2 id="header-txt"> Rock Paper Scissors</h2>
             <Image.Group size="tiny">
