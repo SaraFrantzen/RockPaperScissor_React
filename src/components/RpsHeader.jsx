@@ -11,7 +11,7 @@ const RpsHeader = () => {
         <Header size="huge" id="header">
           <Grid>
             <h2 id="header-txt"> Rock Paper Scissors</h2>
-            <Image.Group size="tiny">
+            <Image.Group size="small">
               <Image bordered circular src={rock} />
               <Image circular src={paper} />
               <Image circular src={scissor} />
