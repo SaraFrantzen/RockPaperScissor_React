@@ -32,6 +32,13 @@ Run unit test using Jest enzyme
 
 ``` $ yarn test ```
 
+### Api - work in progress
+Backend is set up with Rails, [Visit repo - rockPaperScissor_api](https://github.com/Saralundkvist86/rockPaperScissor_api)
+
+User can now log in with email: user@email.com, password: password
+
+watch out for the ability to store scores!
+
 #### Acknowledgement
 
 - To get started with the project I watched [Rock Paper Scissors With ReactJs](https://www.youtube.com/watch?v=Fuml_CO6uvo) by React Ninja
