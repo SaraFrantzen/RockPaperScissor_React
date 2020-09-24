@@ -5,6 +5,8 @@ import RpsHeader from "./components/RpsHeader";
 import Instructions from "./components/Instructions";
 import RpsFooter from "./components/RpsFooter";
 import { Grid, Container, Button } from "semantic-ui-react";
+import LoginForm from "./components/LoginForm";
+import { authenticate } from './Modules/auth';
 
 const plays = ["rock", "paper", "scissor"];
 
@@ -16,6 +18,29 @@ class App extends Component {
     userScore: 0,
     computerScore: 0,
     ishidden: true,
+    renderLoginForm: false,
+    authenticated: false,
+    message: "",
+    entrySaved: false,
+    renderIndex: false,
+  };
+
+  onLogin = async (e) => {
+    e.preventDefault();
+    const response = await authenticate(
+      e.target.email.value,
+      e.target.password.value
+    );
+    if (response.authenticated) {
+      this.setState({ authenticated: true });
+    } else {
+      this.setState({ message: response.message, renderLoginForm: false });
+    }
+  };
+
+
+  onChangeHandler = (e) => {
+    this.setState({ [e.target.name]: e.target.value, entrySaved: false });
   };
 
   determineResult = (user, computer) => {
@@ -72,6 +97,39 @@ class App extends Component {
 
   render() {
     const { user, computer, result } = this.state;
+    
+    
+    const { renderLoginForm, authenticated, message } = this.state;
+    let renderLogin;
+    switch (true) {
+      case renderLoginForm && !authenticated:
+        renderLogin = <LoginForm submitFormHandler={this.onLogin} />;
+        break;
+      case !renderLoginForm && !authenticated:
+        renderLogin = (
+          <>
+            <Button
+              color="green"
+              id="login"
+              onClick={() => this.setState({ renderLoginForm: true })}
+            >
+              Login
+            </Button>
+            <p id="message">{message}</p>
+          </>
+        );
+        break;
+        case authenticated:
+          renderLogin = (
+            <p id="message">
+              You're logged in as: {JSON.parse(sessionStorage.getItem("credentials")).uid}
+            </p>
+          );
+          break;
+          default:
+            break;
+        }
+
     return (
       <>
         <RpsHeader />
@@ -163,7 +221,10 @@ class App extends Component {
           <Score
             userScore={this.state.userScore}
             computerScore={this.state.computerScore}
+            onChangeHandler={this.onChangeHandler}
           />
+          {renderLogin}
+
           <p id="score-board">.</p>
         </Container>
         <RpsFooter />
