@@ -24,5 +24,4 @@ describe("User can see the Index page", () => {
   it("by displaying footer", () => {
     cy.get("#footer").contains("Made by Sara Lundkvist 2020");
   });
-
 });

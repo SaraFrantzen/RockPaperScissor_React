@@ -77,8 +77,7 @@ class App extends Component {
         <RpsHeader />
         <Instructions />
         <Container>
-        
-         <Grid className="playGrid">
+          <Grid className="playGrid">
             <Grid.Row columns={2}>
               <Grid.Column>
                 <Images id="userPlayImg" plays={user} />
@@ -160,7 +159,7 @@ class App extends Component {
               </Grid.Column>
             </Grid.Row>
           </Grid>
-         
+
           <Score
             userScore={this.state.userScore}
             computerScore={this.state.computerScore}

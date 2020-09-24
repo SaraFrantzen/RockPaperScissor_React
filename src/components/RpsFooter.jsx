@@ -13,5 +13,3 @@ const RpsFooter = () => {
   );
 };
 export default RpsFooter;
-
-
