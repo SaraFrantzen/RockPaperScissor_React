@@ -14,7 +14,13 @@
   font-size: 3em;
   font-family: "Permanent Marker", cursive;
 }
+#login, {
+  margin-left: 50em;
+}
 
+#login-form, #message{
+  margin-top: 10em;
+}
 #userScore {
   font-size: 3em;
   font-family: "Permanent Marker", cursive;

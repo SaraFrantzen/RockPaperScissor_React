@@ -108,13 +108,13 @@ class App extends Component {
       case !renderLoginForm && !authenticated:
         renderLogin = (
           <>
-            <Button
+             <Button
               color="green"
               id="login"
               onClick={() => this.setState({ renderLoginForm: true })}
             >
               Login
-            </Button>
+            </Button> 
             <p id="message">{message}</p>
           </>
         );
