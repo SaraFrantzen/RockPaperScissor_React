@@ -32,7 +32,7 @@ Run unit test using Jest enzyme
 
 ``` $ yarn test ```
 
-#### acknowledgement
+#### Acknowledgement
 
 - To get started with the project I watched [Rock Paper Scissors With ReactJs](https://www.youtube.com/watch?v=Fuml_CO6uvo) by React Ninja
 - Thanks to coach Emma @CraftAcademy who helped me with the setScore functionality
