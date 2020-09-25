@@ -223,7 +223,7 @@ class App extends Component {
             computerScore={this.state.computerScore}
             onChangeHandler={this.onChangeHandler}
           />
-          {renderLogin}
+         <div id="render"> {renderLogin}</div>
 
           <p id="score-board">.</p>
         </Container>

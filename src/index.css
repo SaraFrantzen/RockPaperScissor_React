@@ -14,8 +14,9 @@
   font-size: 3em;
   font-family: "Permanent Marker", cursive;
 }
-#login, {
+#render {
   margin-left: 50em;
+  margin-top: 10em;
 }
 
 #login-form, #message{
